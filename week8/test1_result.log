@@ -1,0 +1,29 @@
+$ bash redis_test_1.sh
+redis test 10 byte value:
+SET: 58105.75 requests per second
+GET: 63411.54 requests per second
+
+redis test 20 byte value:
+SET: 59066.75 requests per second
+GET: 39920.16 requests per second
+
+redis test 50 byte value:
+SET: 48590.86 requests per second
+GET: 41305.25 requests per second
+
+redis test 100 byte value:
+SET: 56433.41 requests per second
+GET: 59206.63 requests per second
+
+redis test 100 byte value:
+SET: 32195.75 requests per second
+GET: 19485.58 requests per second
+
+redis test 1k byte value:
+SET: 18508.24 requests per second
+Writing to socket ▒▒▒▒▒׽▒▒▒û▒▒▒▒▒Ӳ▒▒▒(▒▒ʹ▒▒һ▒▒ sendto ▒▒▒÷▒▒▒▒▒▒ݱ▒▒׽▒▒▒ʱ)û▒▒▒ṩ▒▒ַ                                                                                            ▒▒▒▒▒ͻ▒▒▒▒▒▒▒ݵ▒▒▒▒▒û▒б▒▒▒▒ܡ▒
+All clients disconnected... aborting.
+redis test 5k byte value:
+SET: 13974.29 requests per second
+GET: 22237.04 requests per second
+

@@ -1,0 +1,37 @@
+$ bash redis_test_2a.sh
+# Memory
+used_memory:731680
+used_memory_human:714.53K
+used_memory_rss:673880
+used_memory_rss_human:658.09K
+used_memory_peak:4543928
+used_memory_peak_human:4.33M
+total_system_memory:0
+total_system_memory_human:0B
+used_memory_lua:37888
+used_memory_lua_human:37.00K
+maxmemory:104857600
+maxmemory_human:100.00M
+maxmemory_policy:noeviction
+mem_fragmentation_ratio:0.92
+mem_allocator:jemalloc-3.6.0
+
+.
+.
+.
+# Memory
+used_memory:758680
+used_memory_human:740.90K
+used_memory_rss:700880
+used_memory_rss_human:684.45K
+used_memory_peak:4543928
+used_memory_peak_human:4.33M
+total_system_memory:0
+total_system_memory_human:0B
+used_memory_lua:37888
+used_memory_lua_human:37.00K
+maxmemory:104857600
+maxmemory_human:100.00M
+maxmemory_policy:noeviction
+mem_fragmentation_ratio:0.92
+mem_allocator:jemalloc-3.6.0

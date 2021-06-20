@@ -1,0 +1,301 @@
+
+ 
+ 
+io	index
+c:\users\terry.guo-admin\appdata\local\programs\python\python37\lib\io.py
+Module Reference
+The io module provides the Python interfaces to stream handling. The
+builtin open function is defined in this module.
+ 
+At the top of the I/O hierarchy is the abstract base class IOBase. It
+defines the basic interface to a stream. Note, however, that there is no
+separation between reading and writing to streams; implementations are
+allowed to raise an OSError if they do not support a given operation.
+ 
+Extending IOBase is RawIOBase which deals simply with the reading and
+writing of raw bytes to a stream. FileIO subclasses RawIOBase to provide
+an interface to OS files.
+ 
+BufferedIOBase deals with buffering on a raw byte stream (RawIOBase). Its
+subclasses, BufferedWriter, BufferedReader, and BufferedRWPair buffer
+streams that are readable, writable, and both respectively.
+BufferedRandom provides a buffered interface to random access
+streams. BytesIO is a simple stream of in-memory bytes.
+ 
+Another IOBase subclass, TextIOBase, deals with the encoding and decoding
+of streams into text. TextIOWrapper, which extends it, is a buffered text
+interface to a buffered raw stream (`BufferedIOBase`). Finally, StringIO
+is an in-memory stream for text.
+ 
+Argument names are not part of the specification, and only the arguments
+of open() are intended to be used as keyword arguments.
+ 
+data:
+ 
+DEFAULT_BUFFER_SIZE
+ 
+   An int containing the default buffer size used by the module's buffered
+   I/O classes. open() uses the file's blksize (as obtained by os.stat) if
+   possible.
+
+ 
+Modules
+      	 	
+io
+abc
+
+ 
+Classes
+      	 	
+_io._BufferedIOBase(_io._IOBase)
+_io.BufferedRWPair
+_io.BufferedRandom
+_io.BufferedReader
+_io.BufferedWriter
+_io.BytesIO
+BufferedIOBase(_io._BufferedIOBase, IOBase)
+_io._IOBase(builtins.object)
+IOBase
+BufferedIOBase(_io._BufferedIOBase, IOBase)
+RawIOBase(_io._RawIOBase, IOBase)
+TextIOBase(_io._TextIOBase, IOBase)
+_io._RawIOBase(_io._IOBase)
+_io.FileIO
+RawIOBase(_io._RawIOBase, IOBase)
+_io._TextIOBase(_io._IOBase)
+_io.StringIO
+_io.TextIOWrapper
+TextIOBase(_io._TextIOBase, IOBase)
+builtins.OSError(builtins.Exception)
+builtins.BlockingIOError
+UnsupportedOperation(builtins.OSError, builtins.ValueError)
+builtins.ValueError(builtins.Exception)
+UnsupportedOperation(builtins.OSError, builtins.ValueError)
+ 
+class BlockingIOError(OSError)
+   	I/O operation would block.
+ 
+ 	
+Method resolution order:
+BlockingIOError
+OSError
+Exception
+BaseException
+object
+Methods defined here:
+__init__(self, /, *args, **kwargs)
+Initialize self.  See help(type(self)) for accurate signature.
+Methods inherited from OSError:
+__reduce__(...)
+Helper for pickle.
+__str__(self, /)
+Return str(self).
+Static methods inherited from OSError:
+__new__(*args, **kwargs) from builtins.type
+Create and return a new object.  See help(type) for accurate signature.
+Data descriptors inherited from OSError:
+characters_written
+errno
+POSIX exception code
+filename
+exception filename
+filename2
+second exception filename
+strerror
+exception strerror
+winerror
+Win32 exception code
+Methods inherited from BaseException:
+__delattr__(self, name, /)
+Implement delattr(self, name).
+__getattribute__(self, name, /)
+Return getattr(self, name).
+__repr__(self, /)
+Return repr(self).
+__setattr__(self, name, value, /)
+Implement setattr(self, name, value).
+__setstate__(...)
+with_traceback(...)
+Exception.with_traceback(tb) --
+set self.__traceback__ to tb and return self.
+Data descriptors inherited from BaseException:
+__cause__
+exception cause
+__context__
+exception context
+__dict__
+__suppress_context__
+__traceback__
+args
+ 
+class BufferedIOBase(_io._BufferedIOBase, IOBase)
+   	Base class for buffered IO objects.
+ 
+The main difference with RawIOBase is that the read() method
+supports omitting the size argument, and does not have a default
+implementation that defers to readinto().
+ 
+In addition, read(), readinto() and write() may raise
+BlockingIOError if the underlying raw stream is in non-blocking
+mode and not ready; unlike their raw counterparts, they will never
+return None.
+ 
+A typical implementation should not inherit from a RawIOBase
+implementation, but wrap one.
+ 
+ 	
+Method resolution order:
+BufferedIOBase
+_io._BufferedIOBase
+IOBase
+_io._IOBase
+builtins.object
+Data and other attributes defined here:
+__abstractmethods__ = frozenset()
+Methods inherited from _io._BufferedIOBase:
+detach(self, /)
+Disconnect this buffer from its underlying raw stream and return it.
+ 
+After the raw stream has been detached, the buffer is in an unusable
+state.
+read(...)
+Read and return up to n bytes.
+ 
+If the argument is omitted, None, or negative, reads and
+returns all data until EOF.
+ 
+If the argument is positive, and the underlying raw stream is
+not 'interactive', multiple raw reads may be issued to satisfy
+the byte count (unless EOF is reached first).  But for
+interactive raw streams (as well as sockets and pipes), at most
+one raw read will be issued, and a short result does not imply
+that EOF is imminent.
+ 
+Returns an empty bytes object on EOF.
+ 
+Returns None if the underlying raw stream was open in non-blocking
+mode and no data is available at the moment.
+read1(...)
+to the underlying raw stream. A short result does not imply
+that EOF is imminent.
+ 
+Returns an empty bytes object on EOF.
+readinto(self, buffer, /)
+readinto1(self, buffer, /)
+write(...)
+Write the given buffer to the IO stream.
+ 
+Returns the number of bytes written, which is always the length of b
+in bytes.
+ 
+Raises BlockingIOError if the buffer is full and the
+underlying raw stream cannot accept more data at the moment.
+Methods inherited from _io._IOBase:
+__del__(...)
+__enter__(...)
+__exit__(...)
+__iter__(self, /)
+Implement iter(self).
+__next__(self, /)
+Implement next(self).
+close(self, /)
+Flush and close the IO object.
+ 
+This method has no effect if the file is already closed.
+fileno(self, /)
+Returns underlying file descriptor if one exists.
+ 
+OSError is raised if the IO object does not use a file descriptor.
+flush(self, /)
+Flush write buffers, if applicable.
+ 
+This is not implemented for read-only and non-blocking streams.
+isatty(self, /)
+Return whether this is an 'interactive' stream.
+ 
+Return False if it can't be determined.
+readable(self, /)
+Return whether object was opened for reading.
+ 
+If False, read() will raise OSError.
+readline(self, size=-1, /)
+Read and return a line from the stream.
+ 
+If size is specified, at most size bytes will be read.
+ 
+The line terminator is always b'\n' for binary files; for text
+files, the newlines argument to open can be used to select the line
+terminator(s) recognized.
+readlines(self, hint=-1, /)
+Return a list of lines from the stream.
+ 
+hint can be specified to control the number of lines read: no more
+lines will be read if the total size (in bytes/characters) of all
+lines so far exceeds hint.
+seek(...)
+Change stream position.
+ 
+Change the stream position to the given byte offset. The offset is
+interpreted relative to the position indicated by whence.  Values
+for whence are:
+ 
+* 0 -- start of stream (the default); offset should be zero or positive
+* 1 -- current stream position; offset may be negative
+* 2 -- end of stream; offset is usually negative
+ 
+Return the new absolute position.
+seekable(self, /)
+Return whether object supports random access.
+ 
+If False, seek(), tell() and truncate() will raise OSError.
+This method may need to do a test seek().
+tell(self, /)
+Return current stream position.
+truncate(...)
+Truncate file to size bytes.
+ 
+File pointer is left unchanged.  Size defaults to the current IO
+position as reported by tell().  Returns the new size.
+writable(self, /)
+Return whether object was opened for writing.
+ 
+If False, write() will raise OSError.
+writelines(self, lines, /)
+Write a list of lines to stream.
+ 
+Line separators are not added, so it is usual for each of the
+lines provided to have a line separator at the end.
+Static methods inherited from _io._IOBase:
+__new__(*args, **kwargs) from builtins.type
+Create and return a new object.  See help(type) for accurate signature.
+Data descriptors inherited from _io._IOBase:
+__dict__
+closed
+class BufferedRWPair(_BufferedIOBase)
+   	BufferedRWPair(reader, writer, buffer_size=8192, /)
+ 
+A buffered reader and writer object together.
+ 
+A buffered reader object and buffered writer object put together to
+form a sequential IO object that can read and write. This is typically
+used with a socket or two-way pipe.
+ 
+reader and writer are RawIOBase objects that are readable and
+writeable respectively. If the buffer_size is omitted it defaults to
+DEFAULT_BUFFER_SIZE.
+ 
+ 	
+Method resolution order:
+BufferedRWPair
+_BufferedIOBase
+_IOBase
+builtins.object
+Methods defined here:
+__getstate__(...)
+__init__(self, /, *args, **kwargs)
+Initialize self.  See help(type(self)) for accurate signature.
+close(...)
+Flush and close the IO object.
+ 
+This method has no effect if the file is already closed.
+flush(...)
